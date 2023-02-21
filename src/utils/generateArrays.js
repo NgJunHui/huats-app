@@ -1,14 +1,23 @@
-const generateRandomArray = () => {
+
+import Cat from '../images/Cat';
+import Rat from '../images/Rat';
+import Chicken from '../images/Chicken';
+import Centipede from '../images/Centipede';
+
+const generateRandomArray = (images) => {
     const arr = [];
     while (arr.length < 4) {
-        const randomNum = Math.floor(Math.random() * 4) + 1;
-        if (!arr.includes(randomNum)) {
-            arr.push(randomNum);
+        const randomNum = Math.floor(Math.random() * images.length);
+        const randomImage = images[randomNum];
+        if (!arr.includes(randomImage)) {
+            arr.push(randomImage);
         }
     }
     return arr;
 };
 
-export const generateTilesArray = () => generateRandomArray();
+const tileImages = ['東', "南", "西", "北"];
+const animalImages = [<Rat />, <Cat />, <Chicken />, <Centipede />];
 
-export const generateAnimalsArray = () => generateRandomArray();
+export const generateTilesArray = () => generateRandomArray(tileImages);
+export const generateAnimalsArray = () => generateRandomArray(animalImages);

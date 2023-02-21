@@ -3,21 +3,23 @@ import "./App.css";
 import { generateAnimalsArray, generateTilesArray } from "./utils/generateArrays";
 
 const Home = () => {
+
     const [toggleState, setToggleState] = useState(1);
     const [tilesArray, setTilesArray] = useState(generateTilesArray());
     const [animalsArray, setAnimalsArray] = useState(generateAnimalsArray());
+
     const resetWinds = () => {
         setTilesArray(generateTilesArray());
     }
 
     const resetAnimals = () => {
-        setAnimalsArray(generateTilesArray());
+        setAnimalsArray(generateAnimalsArray());
     }
 
     const tabDetails = [
         {
             id: 1,
-            label: "Tab 1",
+            label: "Tiles",
             firstTile: tilesArray[0],
             secondTile: tilesArray[1],
             thirdTile: tilesArray[2],
@@ -26,7 +28,7 @@ const Home = () => {
         },
         {
             id: 2,
-            label: "Tab 2",
+            label: "Animals",
             firstTile: animalsArray[0],
             secondTile: animalsArray[1],
             thirdTile: animalsArray[2],
