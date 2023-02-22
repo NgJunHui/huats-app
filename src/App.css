@@ -95,21 +95,17 @@ button {
 
 
 .button-19 {
-
-  background-color: #1899D6;
+  background-color: #5acf3c;
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: black;
   cursor: pointer;
   display: inline-block;
-  font-family: din-round, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
   letter-spacing: .8px;
   line-height: 20px;
-  margin: auto 0;
+  margin: 20px;
   outline: none;
   overflow: visible;
   padding: 13px 16px;
@@ -120,12 +116,16 @@ button {
   transition: filter .2s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 15%;
+  width: 130px;
+  height: 180px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
 }
 
 .button-19:after {
   background-clip: padding-box;
-  background-color: #1CB0F6;
+  background-color: rgb(255, 255, 255);
   border: solid transparent;
   border-radius: 16px;
   border-width: 0 0 4px;

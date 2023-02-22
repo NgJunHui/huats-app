@@ -8,15 +8,30 @@ const Home = () => {
     const [tilesArray, setTilesArray] = useState(generateTilesArray());
     const [animalsArray, setAnimalsArray] = useState(generateAnimalsArray());
 
-    const resetWinds = () => {
-        setTilesArray(generateTilesArray());
-        console.log(tilesArray)
+    const resetTiles = () => {
+        const newTilesArray = generateTilesArray();
+        setTilesArray(newTilesArray);
+        const updatedTabDetails = [...tabDetails];
+        updatedTabDetails[0].buttons = newTilesArray.map((label, index) => ({
+            id: index,
+            label,
+            showContent: false,
+        }));
+        setTabDetails(updatedTabDetails);
     };
 
     const resetAnimals = () => {
-        console.log('2')
-        setAnimalsArray(generateAnimalsArray());
-    }
+        const newAnimalsArray = generateAnimalsArray();
+        setAnimalsArray(newAnimalsArray);
+        const updatedTabDetails = [...tabDetails];
+        updatedTabDetails[1].buttons = newAnimalsArray.map((label, index) => ({
+            id: index,
+            label,
+            showContent: false,
+        }));
+        setTabDetails(updatedTabDetails);
+
+    };
 
     const [tabDetails, setTabDetails] = useState([
         {
@@ -28,7 +43,7 @@ const Home = () => {
                 { id: 3, label: tilesArray[2], showContent: false },
                 { id: 4, label: tilesArray[3], showContent: false },
             ],
-            resetBtn: resetWinds,
+            resetBtn: resetTiles,
         },
         {
             id: 2,
@@ -79,7 +94,7 @@ const Home = () => {
                                 className="button-19"
                                 onClick={() => toggleButtonContent(tabIndex, buttonIndex)}
                             >
-                                {button.showContent ? button.label : "Show Content"}
+                                {button.showContent ? button.label : ""}
                             </button>
                         ))}
                         <button className="button-19" onClick={tab.resetBtn}>Reset</button>
