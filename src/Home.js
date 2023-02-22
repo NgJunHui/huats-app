@@ -10,35 +10,47 @@ const Home = () => {
 
     const resetWinds = () => {
         setTilesArray(generateTilesArray());
-    }
+        console.log(tilesArray)
+    };
 
     const resetAnimals = () => {
+        console.log('2')
         setAnimalsArray(generateAnimalsArray());
     }
 
-    const tabDetails = [
+    const [tabDetails, setTabDetails] = useState([
         {
             id: 1,
             label: "Tiles",
-            firstTile: tilesArray[0],
-            secondTile: tilesArray[1],
-            thirdTile: tilesArray[2],
-            fourthTile: tilesArray[3],
+            buttons: [
+                { id: 1, label: tilesArray[0], showContent: false },
+                { id: 2, label: tilesArray[1], showContent: false },
+                { id: 3, label: tilesArray[2], showContent: false },
+                { id: 4, label: tilesArray[3], showContent: false },
+            ],
             resetBtn: resetWinds,
         },
         {
             id: 2,
             label: "Animals",
-            firstTile: animalsArray[0],
-            secondTile: animalsArray[1],
-            thirdTile: animalsArray[2],
-            fourthTile: animalsArray[3],
+            buttons: [
+                { id: 1, label: animalsArray[0], showContent: false },
+                { id: 2, label: animalsArray[1], showContent: false },
+                { id: 3, label: animalsArray[2], showContent: false },
+                { id: 4, label: animalsArray[3], showContent: false },
+            ],
             resetBtn: resetAnimals,
         },
-    ];
+    ]);
 
     const toggleTab = (index) => {
         setToggleState(index);
+    };
+
+    const toggleButtonContent = (tabIndex, buttonIndex) => {
+        const updatedTabDetails = [...tabDetails];
+        updatedTabDetails[tabIndex].buttons[buttonIndex].showContent = true;
+        setTabDetails(updatedTabDetails);
     };
 
     return (
@@ -56,17 +68,21 @@ const Home = () => {
             </div>
 
             <div className="content-tabs">
-                {tabDetails.map((tab) => (
+                {tabDetails.map((tab, tabIndex) => (
                     <div
                         key={tab.id}
                         className={toggleState === tab.id ? "content active-content" : "content"}
                     >
-                        <button className="button-19">{tab.firstTile}</button>
-                        <button className="button-19">{tab.secondTile}</button>
-                        <button className="button-19">{tab.thirdTile}</button>
-                        <button className="button-19">{tab.fourthTile}</button>
+                        {tab.buttons.map((button, buttonIndex) => (
+                            <button
+                                key={button.id}
+                                className="button-19"
+                                onClick={() => toggleButtonContent(tabIndex, buttonIndex)}
+                            >
+                                {button.showContent ? button.label : "Show Content"}
+                            </button>
+                        ))}
                         <button className="button-19" onClick={tab.resetBtn}>Reset</button>
-
                     </div>
                 ))}
             </div>
