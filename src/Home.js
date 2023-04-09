@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
+import Grid from '@mui/material/Grid'
 import { generateAnimalsArray, generateTilesArray } from "./utils/generateArrays";
-
 const Home = () => {
 
     const [toggleState, setToggleState] = useState(1);
@@ -36,7 +36,7 @@ const Home = () => {
     const [tabDetails, setTabDetails] = useState([
         {
             id: 1,
-            label: "Tiles",
+            label: <div>🀄<span style={{ fontStyle: 'italic' }}> Tiles</span></div>,
             buttons: [
                 { id: 1, label: tilesArray[0], showContent: false },
                 { id: 2, label: tilesArray[1], showContent: false },
@@ -47,7 +47,7 @@ const Home = () => {
         },
         {
             id: 2,
-            label: "Animals",
+            label: <div>🀅<span style={{ fontStyle: 'italic' }}> Animals</span></div>,
             buttons: [
                 { id: 1, label: animalsArray[0], showContent: false },
                 { id: 2, label: animalsArray[1], showContent: false },
@@ -81,26 +81,28 @@ const Home = () => {
                     </button>
                 ))}
             </div>
-
-            <div className="content-tabs">
-                {tabDetails.map((tab, tabIndex) => (
-                    <div
-                        key={tab.id}
-                        className={toggleState === tab.id ? "content active-content" : "content"}
-                    >
+            {tabDetails.map((tab, tabIndex) => (
+                <div
+                    className={toggleState === tab.id ? "content active-content" : "content"}
+                >
+                    <Grid container>
                         {tab.buttons.map((button, buttonIndex) => (
-                            <button
-                                key={button.id}
-                                className="button-19"
-                                onClick={() => toggleButtonContent(tabIndex, buttonIndex)}
-                            >
-                                {button.showContent ? button.label : ""}
-                            </button>
+                            <Grid item md={3} xs={6}>
+                                <button
+                                    key={button.id}
+                                    className="button-19"
+                                    onClick={() => toggleButtonContent(tabIndex, buttonIndex)}
+                                >
+                                    {button.showContent ? button.label : ""}
+                                </button>
+                            </Grid>
                         ))}
-                        <button className="button-19" onClick={tab.resetBtn}>Reset</button>
+                    </Grid>
+                    <div className="btn-div">
+                        <button className="reset-btn" onClick={tab.resetBtn}>Reset</button>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
     );
 }
